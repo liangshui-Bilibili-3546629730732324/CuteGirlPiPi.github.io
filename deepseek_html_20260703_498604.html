@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>beiliya1001 · B站空间</title>
+    <style>
+        /* 全局重置与风格 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(145deg, #f5f0f0 0%, #e8e0e0 100%);
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 24px;
+            margin: 0;
+        }
+
+        .card {
+            max-width: 700px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border-radius: 48px 48px 32px 32px;
+            padding: 40px 32px 48px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12), 0 6px 16px rgba(0, 0, 0, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            transition: all 0.2s ease;
+            text-align: center;
+        }
+
+        /* 头像 / 标识 */
+        .avatar {
+            width: 100px;
+            height: 100px;
+            background: #2d2d2d;
+            border-radius: 50%;
+            margin: 0 auto 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 40px;
+            font-weight: 500;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            border: 3px solid white;
+        }
+
+        h1 {
+            font-size: 32px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            color: #1a1a1a;
+            margin-bottom: 4px;
+        }
+
+        .subhead {
+            font-size: 18px;
+            color: #555;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .subhead span {
+            background: #eae2e2;
+            padding: 4px 14px;
+            border-radius: 40px;
+            font-size: 14px;
+            color: #3d3d3d;
+        }
+
+        /* 主要按钮 */
+        .bili-button {
+            display: inline-block;
+            background: #00a1d6;
+            color: white;
+            font-weight: 600;
+            font-size: 20px;
+            padding: 14px 36px;
+            border-radius: 60px;
+            text-decoration: none;
+            box-shadow: 0 6px 0 #0083b3, 0 8px 20px rgba(0, 161, 214, 0.35);
+            transition: all 0.08s linear;
+            margin: 12px 0 28px;
+            letter-spacing: 0.5px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .bili-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 0 #0083b3, 0 12px 28px rgba(0, 161, 214, 0.45);
+            background: #0099cc;
+        }
+
+        .bili-button:active {
+            transform: translateY(4px);
+            box-shadow: 0 2px 0 #0083b3, 0 8px 18px rgba(0, 161, 214, 0.3);
+        }
+
+        /* 分割装饰 */
+        .divider {
+            width: 60px;
+            height: 4px;
+            background: #d0c6c6;
+            border-radius: 6px;
+            margin: 12px auto 28px;
+        }
+
+        /* 友情链接卡片 */
+        .friends-section {
+            background: rgba(250, 247, 247, 0.7);
+            border-radius: 28px;
+            padding: 22px 20px 18px;
+            margin: 18px 0 22px;
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(4px);
+        }
+
+        .friends-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #2b2b2b;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .friend-link {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: white;
+            padding: 10px 18px 10px 22px;
+            border-radius: 60px;
+            text-decoration: none;
+            color: #1f1f1f;
+            font-weight: 500;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+            border: 1px solid #ece4e4;
+            transition: all 0.15s;
+            margin-bottom: 10px;
+        }
+
+        .friend-link:last-child {
+            margin-bottom: 0;
+        }
+
+        .friend-link:hover {
+            background: #faf6f6;
+            border-color: #b8a8a8;
+            transform: scale(1.01);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+        }
+
+        .friend-link .badge {
+            background: #eae2e2;
+            padding: 2px 14px;
+            border-radius: 40px;
+            font-size: 13px;
+            color: #3d3d3d;
+            font-weight: 400;
+        }
+
+        .friend-link .arrow {
+            color: #a08888;
+            font-size: 18px;
+            margin-left: 8px;
+        }
+
+        /* 代表作 & 怀念 */
+        .works-block {
+            margin-top: 18px;
+            padding: 14px 12px;
+            border-radius: 28px;
+            background: rgba(240, 235, 235, 0.3);
+            border: 1px dashed #ccc0c0;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 8px 16px;
+        }
+
+        .works-block a {
+            color: #1f1f1f;
+            font-weight: 500;
+            text-decoration: none;
+            background: white;
+            padding: 4px 18px;
+            border-radius: 40px;
+            border: 1px solid #ddd2d2;
+            transition: 0.1s;
+            font-size: 15px;
+        }
+
+        .works-block a:hover {
+            background: #00a1d6;
+            color: white;
+            border-color: #00a1d6;
+        }
+
+        .works-block .heart {
+            color: #b34a4a;
+            font-size: 18px;
+            margin: 0 2px;
+        }
+
+        .works-block .legacy {
+            color: #5a4a4a;
+            font-size: 14px;
+            background: rgba(0,0,0,0.02);
+            padding: 3px 14px;
+            border-radius: 40px;
+            border: 1px solid #ddd2d2;
+        }
+
+        /* 底部 */
+        .footer-note {
+            margin-top: 28px;
+            font-size: 14px;
+            color: #7a6e6e;
+            letter-spacing: 0.3px;
+            border-top: 1px solid #ddd2d2;
+            padding-top: 24px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .footer-note a {
+            color: #3d3d3d;
+            text-decoration: none;
+            border-bottom: 1px dotted #b0a0a0;
+        }
+
+        .footer-note a:hover {
+            color: #00a1d6;
+            border-bottom-color: #00a1d6;
+        }
+
+        /* 响应式 */
+        @media (max-width: 500px) {
+            .card { padding: 28px 18px; }
+            h1 { font-size: 26px; }
+            .bili-button { font-size: 17px; padding: 12px 28px; }
+            .friend-link { flex-wrap: wrap; gap: 6px; justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <!-- 标识 -->
+        <div class="avatar">B</div>
+        <h1>beiliya1001</h1>
+        <div class="subhead">
+            <span>🎬 贝利亚1001</span>
+            <span>📺 B站创作</span>
+        </div>
+
+        <!-- 核心：跳转到B站空间 -->
+        <a class="bili-button" href="https://space.bilibili.com/3546629730732324" target="_blank">
+            ▶ 进入我的B站空间
+        </a>
+        <div style="font-size: 14px; color: #6f5f5f; margin-top: -12px; margin-bottom: 6px;">
+            所有作品 · 动态 · 合集
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- 友情链接 (保留原站风格) -->
+        <div class="friends-section">
+            <div class="friends-title">
+                <span>🌹</span> 友情链接 <span>🌹</span>
+            </div>
+
+            <a href="https://roseshop.asia/" target="_blank" class="friend-link">
+                <span><strong>ROSE SHOP</strong> <span style="font-weight:400; color:#5f4f4f;">· 老店4年</span></span>
+                <span class="badge">优质售后</span>
+                <span class="arrow">→</span>
+            </a>
+
+            <div style="font-size: 13px; color: #6f5f5f; padding: 6px 8px 0; text-align: center; opacity: 0.8;">
+                🌸 只卖最真实 · 最时尚 · 最好用 ｜ 放心下单
+            </div>
+        </div>
+
+        <!-- 代表作 & 怀念 -->
+        <div class="works-block">
+            <span style="font-weight:500;">🛡️ 代表作</span>
+            <a href="#" onclick="alert('这里可以放您B站的代表作视频链接～'); return false;">搞完代表作</a>
+            <span class="heart">❤️</span>
+            <span style="color:#3d2d2d;">爱来自欣欣哥</span>
+            <span class="legacy">🕊️ 永远怀念花雨庭</span>
+        </div>
+
+        <!-- 底部导航 -->
+        <div class="footer-note">
+            <span>📌 <a href="#" onclick="alert('B站个人空间：https://space.bilibili.com/3546629730732324'); return false;">B站空间</a></span>
+            <span>📧 <a href="#" onclick="alert('可通过B站私信联系'); return false;">联系</a></span>
+            <span>⚡ <a href="https://space.bilibili.com/3546629730732324" target="_blank">直达B站</a></span>
+        </div>
+
+        <div style="margin-top: 16px; font-size: 12px; color: #a08888; letter-spacing: 0.5px;">
+            beiliya1001 · 风格致敬原站
+        </div>
+    </div>
+</body>
+</html>
