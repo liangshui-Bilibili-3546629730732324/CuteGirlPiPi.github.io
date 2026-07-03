@@ -1,2 +1,3 @@
-# CuteGirlPiPi.github.io
-1
+如你所见 这是我是个没用的pipi的垃圾博客
+QQ群1060339166
+点击链接加入群聊【7⃣️8⃣️南人群丨1群丨端午节快乐🎉丨100人抽正版账号】：https://qm.qq.com/q/aAVfD9FZiE
